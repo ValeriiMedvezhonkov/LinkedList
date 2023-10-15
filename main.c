@@ -36,7 +36,7 @@ int main(){
     printf("Enter position: ");
     scanf("%d",&position);
     if(position>=size(list) || position <= 0){
-        printf("VIAC");
+        printf("Your position bigger than list size");
         return 0;
     }
 

@@ -3,24 +3,23 @@
 
 #include <stdbool.h>
 
-
 /**
  * Element of the list
  */
-struct element{
-    char* text;             /// content of the element
-    struct element* next;   /// next element
+struct element
+{
+    char *text;           /// content of the element
+    struct element *next; /// next element
 };
-
 
 /**
  * The list
  */
-struct list{
-    struct element* element;    /// the first element of the list
-    int size;                   /// number of elements in the list
+struct list
+{
+    struct element *element; /// the first element of the list
+    int size;                /// number of elements in the list
 };
-
 
 /**
  * Creates new list
@@ -30,8 +29,7 @@ struct list{
  *
  * @return reference to the newly created list or NULL, if something goes wrong.
  */
-struct list* create_list();
-
+struct list *create_list();
 
 /**
  * Creates new element
@@ -40,12 +38,11 @@ struct list* create_list();
  * no new element will be created and function returns NULL. Otherwise returns
  * reference to the newly created element.
  * Text must remain intact!
-  *
+ *
  * @param text the text of the element
  * @return reference to the newly created element
  */
-struct element* create_element(char* text);
-
+struct element *create_element(char *text);
 
 /**
  * Appends new element to the list
@@ -59,8 +56,7 @@ struct element* create_element(char* text);
  * @param element new element to append
  * @return reference to the appended element or NULL on error
  */
-struct element* append(struct list* list, struct element* element);
-
+struct element *append(struct list *list, struct element *element);
 
 /**
  * Inserts the element at the position in the list.
@@ -69,14 +65,13 @@ struct element* append(struct list* list, struct element* element);
  * will happen. If new element is inserted at given position, the rest of the
  * list is append to the newly inserted element. Size of the list is increased
  * by 1. If index is greater than size of list, nothing will be inserted.
-  *
+ *
  * @param list reference to the list
  * @param index position of the element to add
  * @param element the element for insertion
  * @return
  */
-void insert(struct list* list, int index, struct element* element);
-
+void insert(struct list *list, int index, struct element *element);
 
 /**
  * Get element at given position from the list
@@ -90,8 +85,7 @@ void insert(struct list* list, int index, struct element* element);
  * @param index position of the element
  * @return reference to the element at given position, or NULL, if something went wrong.
  */
-struct element* get(struct list* list, int index);
-
+struct element *get(struct list *list, int index);
 
 /**
  * Returns the number of elements in list.
@@ -102,8 +96,7 @@ struct element* get(struct list* list, int index);
  * @param list the reference to the list
  * @return number of elements in the list or -1 if error
  */
-int size(struct list* list);
-
+int size(struct list *list);
 
 /**
  * Returns true, if list is empty, otherwise false
@@ -114,8 +107,7 @@ int size(struct list* list);
  *
  * @param list the reference to the list
  */
-bool is_empty(struct list* list);
-
+bool is_empty(struct list *list);
 
 /**
  * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
@@ -130,9 +122,7 @@ bool is_empty(struct list* list);
  * @return returns the index of first founded element or -1 if error or not found
  *
  */
-int get_index_of(struct list* list, const char* text);
-
-
+int get_index_of(struct list *list, const char *text);
 
 /**
  * Removes element at specific index
@@ -145,8 +135,7 @@ int get_index_of(struct list* list, const char* text);
  * @return the reference to the removed element or null if there is no such element or on error
  *
  */
-struct element* remove_at(struct list* list, int index);
-
+struct element *remove_at(struct list *list, int index);
 
 /**
  * Removes all elements from list which equals to given text
@@ -160,8 +149,7 @@ struct element* remove_at(struct list* list, int index);
  * @param text the text of element to remove
  * @return the reference of the removed element or NULL on error
  */
-struct element* remove_element(struct list* list, char* text);
-
+struct element *remove_element(struct list *list, char *text);
 
 /**
  * Function frees the content of the list from memory
@@ -170,29 +158,55 @@ struct element* remove_element(struct list* list, char* text);
  *
  * @param list the reference to the list
  */
-void free_list(struct list* list);
-
+void free_list(struct list *list);
 
 /**
  * Function frees the element from the memory
  *
  * @param element the reference to the element
  */
-void free_element(struct element* element);
-
+void free_element(struct element *element);
 
 /**
  * Function prints all element in list
  *
  * @param list the reference to the list
  */
-void linked_list_print(struct list* list);
+void linked_list_print(struct list *list);
 
+/**
+ * Appends new element to the list
+ *
+ * Appends new element at the start of the list. If no list or element is given
+ * (NULL) nothing will be done. Otherwise new element will be added at the
+ * start of the list of elements.
+ * If the element was appended successfully, counter will be increased by 1.
+ *
+ * @param list the reference to the list
+ * @param element new element to append
+ * @return reference to the appended element or NULL on error
+ */
+struct element *append_begin(struct list *list, struct element *element);
 
+/**
+ * Swap elements by cut at some position
+ *
+ * Swapping a list parcials which was cut at position. If no list or element is given
+ * (NULL) nothing will be done. Otherwise new element will be added at the
+ * start of the list of elements.
+ * If the element was appended successfully, counter will be increased by 1.
+ *
+ * @param list the reference to the list
+ * @param positin index where list should be cut
+ * @return reference to the cut and swaped list or NULL on error
+ */
+struct list *cutAndSwap(struct list *list, int position);
 
-struct element* append_begin(struct list* list, struct element* element);
+/**
+ * The function reverses the list
+ *
+ * @param list the reference to the list
+ */
+void reverse(struct list *list);
 
-void print_get(struct element* element,int index);
-struct list* cutAndSwap(struct list* list,int position);
-void reverse(struct list* list);
 #endif
