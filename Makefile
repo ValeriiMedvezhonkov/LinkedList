@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS= -c -std=c11 -Werror -Wall -Wconversion -lm
+CFLAGS= -c -std=c11 -Werror -Wall -Wconversion
 
 all: app
 
